@@ -14,34 +14,32 @@
 ### Association
 
 * has_many :items
-* has_many :purchase
+* has_many :histories
 
 ## items table
 
 | Column             | Type                | Options                       |
 |--------------------|---------------------|-------------------------------|
-| price              | string              | null: false                   |
-| user               | references          | null: false,foreign_key: true |
-| category           | string              | null: false                   |
-| condition          | string              | null: false                   |
-| delivery charge    | string              | null: false                   |
-| sender             | string              | null: false                   |
-| schedule           | string              | null: false                   |
+| name               | string              | null: false                   |
+| information        | text                | null: false                   |
+| category_id        | integer             | null: false                   |
+| condition_id       | integer             | null: false                   |
+| delivery burden_id | integer             | null: false                   |
+| sender area_id     | integer             | null: false                   |
+| schedule_id        | integer             | null: false                   |
+| price              | integer             | null: false                   |
 
 ### Association
 
 - belongs_to :user
-- has_one : purchase
+- has_one : history
 
-## purchase table
+## address table
 
 | Column             | Type                | Options                       |
 |--------------------|---------------------|-------------------------------|
-| card number        | string              | null: false                   |
-| expiration         | string              | null: false                   |
-| security code      | string              | null: false                   |
-| post code          | string              | null: false                   |
-| prefectures        | string              | null: false                   |
+| post code          | integer             | null: false                   |
+| prefectures_id     | integer              | null: false                   |
 | municipalities     | string              | null: false                   |
 | address            | string              | null: false                   |
 | building name      | string              |                               |
@@ -49,5 +47,10 @@
 
 ### Association
 
-- belongs_to :items
+- belongs_to :histories
+
+## history table
+
+### Association
 - belongs_to :user
+- has_one :address
