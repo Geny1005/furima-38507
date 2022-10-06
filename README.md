@@ -11,7 +11,7 @@
 | last_name_kana     | string              | null: false               |
 | first_name         | string              | null: false               |
 | first_name_kana    | string              | null: false               |
-| date               | string              | null: false               |
+| 'YYYY-MM-DD'       | string              | null: false               |
 
 ### Association
 
@@ -26,8 +26,8 @@
 | information        | text                | null: false                    |
 | category_id        | integer             | null: false                    |
 | condition_id       | integer             | null: false                    |
-| delivery burden_id | integer             | null: false                    |
-| sender area_id     | integer             | null: false                    |
+| delivery_burden_id | integer             | null: false                    |
+| sender_area_id     | integer             | null: false                    |
 | schedule_id        | integer             | null: false                    |
 | price              | integer             | null: false                    |
 | user               | references          | null: false, foreign_key: true |
@@ -41,12 +41,12 @@
 
 | Column             | Type                | Options                       |
 |--------------------|---------------------|-------------------------------|
-| post code          | string              | null: false                   |
-| sender area_id     | integer             | null: false                   |
+| post_code          | string              | null: false                   |
+| sender_area_id     | integer             | null: false                   |
 | municipalities     | string              | null: false                   |
 | address            | string              | null: false                   |
-| building name      | string              |                               |
-| phone number       | string              | null: false                   |
+| building_name      | string              |                               |
+| phone_number       | string              | null: false                   |
 | history            | references          | null: false, foreign_key: true |
 
 ### Association
