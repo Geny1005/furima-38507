@@ -10,3 +10,5 @@ class Delivery_burden < ActiveHash::Base
   has_many :items
 
   end
+
+  
