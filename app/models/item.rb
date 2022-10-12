@@ -28,5 +28,8 @@ class Item < ApplicationRecord
   belongs_to :sender_area
   validates :sender_area_id, numericality: { other_than: 1 , message: "can't be blank"}
 
+  belongs_to :schedule
+  validates :schdule_id, numericality: { other_than: 1 , message: "can't be blank"}
+
 end
 
