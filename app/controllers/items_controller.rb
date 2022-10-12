@@ -20,6 +20,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).parmit(:name, :information, :categry_id, :condition_id, :delivery_burden_id, :sender_area_id, :schedule_id, :price).merge(user_id: current_user.id)
-    
+  end
 
 end
