@@ -11,8 +11,9 @@ class Item < ApplicationRecord
   validates :delivery_burden_id, presence: true
   validates :sender_area_id, presence: true
   validates :schedule_id, presence: true
-  validates :price, presence: true
+  
   validates :user, presence: true
+  validates :image, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
