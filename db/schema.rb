@@ -49,7 +49,16 @@ ActiveRecord::Schema.define(version: 2022_10_17_084041) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "price", null: false
+    t.integer "card_number", null: false
+    t.integer "card_exp_month", null: false
+    t.integer "card_exp_year", null: false
+    t.integer "card_cvc", null: false
+    t.integer "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "addresses", null: false
+    t.string "building"
+    t.integer "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
