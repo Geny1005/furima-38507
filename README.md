@@ -16,7 +16,7 @@
 ### Association
 
 * has_many :items
-* has_many :histories
+* has_many :orders
 
 ## items table
 
@@ -51,9 +51,9 @@
 
 ### Association
 
-- belongs_to :history
+- belongs_to :order
  
-## histories table
+## orders table
 | user               | references          | null: false, foreign_key: true |
 | item               | references          | null: false, foreign_key: true |
 
