@@ -1,4 +1,4 @@
-class Order
+class OrderAddress
 
   #formオブジェクト
 
