@@ -5,7 +5,8 @@ RSpec.describe OrderAddress, type: :model do
   describe '購入情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @order_address = FactoryBot.build(:order_address, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
     end
 
     context '内容に問題ない場合' do
@@ -30,12 +31,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid.')
       end
       it '都道府県を選択していないと保存できないこと' do
-        @order_address.sender_area_id = 0
+        @order_address.sender_area_id = 1
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include()
+        expect(@order_address.errors.full_messages).to include("Sender area can't be blank")
       end
       it '市区町村が空だと保存できないこと' do
         @order_address.city = ''
@@ -52,8 +53,18 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
+      it '電話番号が9桁以下では購入できないこと' do
         @order_address.phone_number = '1111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid.")
+      end
+      it '電話番号が12桁以上では購入できないこと' do
+        @order_address.phone_number = '1111111111111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid.")
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できないこと' do
+        @order_address.phone_number = '１１１'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid.")
       end
@@ -62,6 +73,17 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
+      it "userが紐付いていなければ購入できない" do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it "itemが紐付いていなければ購入できない" do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
+
     end
 
   end 
