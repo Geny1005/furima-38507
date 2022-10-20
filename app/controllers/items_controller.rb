@@ -39,9 +39,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.order.present? || @item.user != current_user
+    if @item.destroy
       redirect_to root_path
-    end
+    else
   end
 
 

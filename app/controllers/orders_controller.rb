@@ -1,10 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :item_data, only:[:index, :create]
 
   def index
     @order_address = OrderAddress.new
-    item_data
     if @item.order.present? || @item.user == current_user
       redirect_to root_path
     end
@@ -12,7 +11,6 @@ class OrdersController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    item_data
     if @order_address.valid?
       pay_item
       @order_address.save
