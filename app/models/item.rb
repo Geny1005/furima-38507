@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to :user
-  #後程実装has_one :history
+  has_one :order
   has_one_attached :image
 
   validates :name, presence: true
